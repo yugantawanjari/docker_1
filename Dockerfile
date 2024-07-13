@@ -10,4 +10,5 @@ RUN pip3 install -r requirements.txt
  
 COPY . .
 EXPOSE 443
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0","--port=443"]
+CMD [ "gunicorn", "--certfile=cert.pem", "--keyfile=key.pem", "--bind", "0.0.0.0:443", "app:app"]
+ 
